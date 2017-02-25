@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Lukaszwit\Prime\Cli\Command\PrimeCommand;
 
-$application = new Application('echo', '1.0.0');
+$application = new Application('Prime', '0.1.0');
 $command = new PrimeCommand();
 
 $application->add($command);

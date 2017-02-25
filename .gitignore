@@ -52,18 +52,6 @@ fabric.properties
 # Email spool folder
 /app/spool/*
 
-# Cache, session files and logs (Symfony3)
-/var/cache/*
-/var/logs/*
-/var/sessions/*
-!var/cache/.gitkeep
-!var/logs/.gitkeep
-!var/sessions/.gitkeep
-
-# Parameters
-/app/config/parameters.yml
-/app/config/parameters.ini
-
 # Managed by Composer
 /app/bootstrap.php.cache
 /var/bootstrap.php.cache
@@ -72,22 +60,15 @@ fabric.properties
 !bin/symfony_requirements
 /vendor/
 
-# Assets and user uploads
-/web/bundles/
-/web/uploads/
-
 # PHPUnit
 /app/phpunit.xml
 /phpunit.xml
+!/phpunit.xml.dist
 
 # Build data
 /build/
 
 # Composer PHAR
 /composer.phar
-
-# Backup entities generated with doctrine:generate:entities command
-**/Entity/*~
-
 composer.lock
-composer.phar
+.idea/
