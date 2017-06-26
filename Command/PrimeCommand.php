@@ -107,10 +107,6 @@ class PrimeCommand extends Command
             $this->showSummary($foundPrimes, $event, $output);
         }
 
-//        $errorMessages = array('Error!', 'Something went wrong');
-//        $formattedBlock = $formatter->formatBlock($errorMessages, 'error', true);
-//        $output->writeln($formattedBlock);
-
         $output->writeln('All operation are done. This is the end!');
     }
 
