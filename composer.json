@@ -1,7 +1,7 @@
 {
   "name": "lukaszwit/prime-cli",
   "type": "library",
-  "description": "A CLI tool to shows usage of Symfony console component",
+  "description": "A CLI tool to shows usage of a Symfony console component",
   "keywords": [
     "symfony",
     "cli",

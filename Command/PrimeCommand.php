@@ -35,7 +35,7 @@ class PrimeCommand extends Command
             ->setDescription('Prime computer.')
             // the full command description shown when running the command with
             // the "--help" option
-            ->setHelp("This command allows you to ctest what command can do")
+            ->setHelp("This command allows you to test what symfony command can do")
             // configure an argument
             ->addArgument('howManyPrimesToFind', InputArgument::OPTIONAL, 'I need your name to proceed.')
             ->addOption('summary', 's', InputOption::VALUE_NONE, 'Do you want to see summary after command finished?')
@@ -84,7 +84,6 @@ class PrimeCommand extends Command
         $this->showSummary = $input->getOption('summary');
         $this->optimize = $input->getOption('optimize');
         $this->showPrimes = $input->getOption('showPrimes');
-
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

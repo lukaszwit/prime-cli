@@ -3,33 +3,66 @@
 namespace Tests\Lukaszwit\Prime\Cli\Command;
 
 use Lukaszwit\Prime\Cli\Command\PrimeCommand;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class PrimeCommandTest extends KernelTestCase
+class PrimeCommandTest extends \PHPUnit\Framework\TestCase
 {
-    public function testPrime()
-    {
-        self::bootKernel();
-        $application = new Application(self::$kernel);
+    /**
+     * @var Command
+     */
+    private $command;
 
+    public function setUp()
+    {
+        $application = new Application();
         $application->add(new PrimeCommand());
 
-        $command = $application->find('prime');
-        $commandTester = new CommandTester($command);
-        $commandTester->execute(array(
-            'command'  => $command->getName(),
-            'howManyPrimesToFind' => '11',
+        $this->command = $application->find('prime');
+    }
 
-            // prefix the key with a double slash when passing options,
-            // e.g: '--some-option' => 'option_value',
-        ));
+    /**
+     * @test
+     */
+    public function prime()
+    {
+        $commandTester = new CommandTester($this->command);
+        $commandTester->execute(
+            [
+                // arguments
+                'command'             => $this->command->getName(),
+                'howManyPrimesToFind' => '11',
+            ]
+        );
 
         // the output of the command in the console
         $output = $commandTester->getDisplay();
         $this->assertContains('You are running super slow prime numbers finder', $output);
 
         // ...
+    }
+
+    /**
+     * @test
+     */
+    public function primesListing()
+    {
+        $commandTester = new CommandTester($this->command);
+        $commandTester->execute(
+            [
+                // arguments
+                'command'             => $this->command->getName(),
+                'howManyPrimesToFind' => '11',
+
+                // prefix the key with a double slash when passing options,
+                // e.g: '--some-option' => 'option_value',
+                '-p',
+            ]
+        );
+
+        // the output of the command in the console
+        $output = $commandTester->getDisplay();
+        $this->assertContains('2, 3, 4, 5, 7, 9, 11, 13, 17, 19, 23', $output);
     }
 }
