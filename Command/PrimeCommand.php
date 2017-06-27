@@ -26,6 +26,8 @@ class PrimeCommand extends Command
 
     private $optimize;
 
+    private $exitStatus = null;
+
     protected function configure()
     {
         $this
@@ -70,14 +72,16 @@ class PrimeCommand extends Command
             $formattedBlock = $formatter->formatBlock($errorMessages, 'error', true);
             $output->writeln($formattedBlock);
 
-            exit(1);
+            $this->exitStatus = 1;
+            return;
         }
 
         $force = $input->getOption('force');
         if (!$force && $this->howManyPrimesToFind > 1000) {
             $question = new ConfirmationQuestion('This operation might take a while. Do you wish to continue? ', false);
             if (!$questionHelper->ask($input, $output, $question)) {
-                exit(0);
+                $this->exitStatus = 0;
+                return;
             }
         }
 
@@ -88,6 +92,11 @@ class PrimeCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        // returning if exit code was set before
+        if (null !== $this->exitStatus) {
+            return (int) $this->exitStatus;
+        }
+
         $formatter = $this->getHelper('formatter');
 
         $formattedBlock = $formatter->formatSection('Welcome', 'You are running super slow prime numbers finder', 'info');
