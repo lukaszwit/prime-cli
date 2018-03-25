@@ -176,11 +176,11 @@ class PrimeCommand extends Command
 
         if ($numberToCheck < 2) {
             return false;
-        } else {
-            for ($i = 2; $i < $iterationsCount; $i++) {
-                if (($numberToCheck % $i) === 0) {
-                    return false;
-                }
+        }
+
+        for ($i = 2; $i < $iterationsCount; $i++) {
+            if (($numberToCheck % $i) === 0) {
+                return false;
             }
         }
 

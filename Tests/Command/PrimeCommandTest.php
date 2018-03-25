@@ -3,11 +3,12 @@
 namespace Tests\Lukaszwit\Prime\Cli\Command;
 
 use Lukaszwit\Prime\Cli\Command\PrimeCommand;
+use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class PrimeCommandTest extends \PHPUnit\Framework\TestCase
+class PrimeCommandTest extends TestCase
 {
     /**
      * @var Command
@@ -32,7 +33,7 @@ class PrimeCommandTest extends \PHPUnit\Framework\TestCase
             [
                 // arguments
                 'command'             => $this->command->getName(),
-                'howManyPrimesToFind' => '11',
+                'howManyPrimesToFind' => '11'
             ]
         );
 
@@ -57,7 +58,7 @@ class PrimeCommandTest extends \PHPUnit\Framework\TestCase
 
                 // prefix the key with a double slash when passing options,
                 // e.g: '--some-option' => 'option_value',
-                '-p',
+                '-p' => true,
             ]
         );
 
